@@ -27,15 +27,17 @@ export const fetchReposFailure = (error) => {
 };
 
 
+var github_token = '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'
 
-export const fetchRepos = (searchTerm) => {
+
+export const fetchRepos = (searchTerm, pageNo) => {
   return (dispatch) => {
     dispatch(fetchReposRequest());
     axios
-      .get(`https://api.github.com/search/repositories?q=${searchTerm}`,{
+      .get(`https://api.github.com/search/repositories?q=${searchTerm}&page=${pageNo}`,{
         auth:{
           username:"Animesh-chaturvedi",
-          password:"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"
+          password:github_token
         }
       })
       .then((response) => {

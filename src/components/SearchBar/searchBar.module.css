@@ -29,4 +29,10 @@
   font-size: 1.8rem;
   font-weight: 600;
   padding: 1.2rem;
+  white-space: noWrap;
+}
+@media only screen and (max-width: 950px){
+    .container{
+        display: block;
+    }
 }

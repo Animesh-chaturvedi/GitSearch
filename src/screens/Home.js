@@ -3,8 +3,10 @@ import SearchBar from "../components/SearchBar";
 import { connect } from "react-redux";
 import { fetchRepos, addFav } from "../redux";
 import ReposList from "../components/ReposList";
-import { Link } from "react-router-dom";
+import Pagination from "../components/Pagination";
+import { useState } from "react";
 function Home(props) {
+  const [pageNo, setPageNo] = useState(0);
   const { fetchRepos, repoObj, addFav, favRepObj } = props;
   const { loading, error, repos } = repoObj;
   const { favRepos } = favRepObj;
@@ -26,26 +28,45 @@ function Home(props) {
     };
     let found = favRepos.some((el) => el.id === repo.id);
     if (!found) {
+      setPageNo(0);
       addFav(newFav);
       localStorage.setItem(
         "favRepos",
-        JSON.stringify((localStorage.favRepos && localStorage.favRepos.length !== 0) ? JSON.parse(localStorage.favRepos).concat(newFav): newFav)
+        JSON.stringify(
+          localStorage.favRepos && localStorage.favRepos.length !== 0
+            ? JSON.parse(localStorage.favRepos).concat(newFav)
+            : newFav
+        )
       );
     } else {
       alert("Already in favourites");
     }
   };
 
- 
+  const onClickPage = (asc) => {
+    asc ? setPageNo(pageNo + 1) : setPageNo(pageNo - 1);
+  };
 
   return (
     <div>
-      <SearchBar fetch={fetchRepos} Text="Github" fav={false} />
-      {loading ? (
-        "Loading..."
-      ) : (
-        <ReposList list={repos} buttonFunc={addNewFav} fav={false} />
-      )}
+        <div>
+          <SearchBar
+            fetch={fetchRepos}
+            Text="Github"
+            fav={false}
+            pageNo={pageNo}
+          />
+          {loading ? (
+            "Loading..."
+          ) : (
+            error ? (<div style={{color:"red"}}> {error}</div>) : (<ReposList list={repos} buttonFunc={addNewFav} fav={false} />)
+          )}
+          {repos.length === 0 || loading ? (
+            ""
+          ) : (
+            <Pagination handleClick={onClickPage} pageNo={pageNo} />
+          )}
+        </div>
     </div>
   );
 }
@@ -59,7 +80,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchRepos: (searchTerm) => dispatch(fetchRepos(searchTerm)),
+    fetchRepos: (searchTerm, pageNo) =>
+      dispatch(fetchRepos(searchTerm, pageNo)),
     addFav: (newFav) => dispatch(addFav(newFav)),
   };
 };

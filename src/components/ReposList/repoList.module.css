@@ -5,16 +5,18 @@
   color: #8b949e;
   padding: 1.5rem 0rem;
   line-height: 1.5rem;
+  width: 100%;
+  overflow-x: auto;
 }
 
 .listContainer {
   padding: 0;
-  border-top: 2px solid #21262d;
+  
 }
 
 .cont1 {
   text-align: left;
-  max-width: 60%;
+  /* max-width: 60%; */
 }
 .cont1 > h2 {
   margin: 0px;
@@ -50,6 +52,7 @@
   border: none;
   padding: 0.8rem 1.2rem;
   border-radius: 8px;
+  white-space: noWrap;
 }
 
 .tag {
@@ -68,4 +71,15 @@
   font-size: 0.9rem;
   justify-content: space-between;
   width: 15rem;
+}
+
+@media only screen and (max-width: 700px) {
+  .repoContainer {
+    display: block;
+    /* justify-content: space-between;
+    border-bottom: 2px solid #21262d;
+    color: #8b949e;
+    padding: 1.5rem 0rem;
+    line-height: 1.5rem; */
+  }
 }

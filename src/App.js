@@ -12,6 +12,7 @@ import Home from "./screens/Home";
 import { Provider } from "react-redux";
 import store from "./redux/store"
 import NavBar from "./components/NavBar"
+import ErrorBoundary from "./ErrorBoundry";
 const Apps = () =>
   useRoutes([
     { path: "/", element: <Home /> },
@@ -24,7 +25,9 @@ function App() {
       <Provider store={store}>
         <BrowserRouter>
           <NavBar />
+          <ErrorBoundary>
           <Apps />
+          </ErrorBoundary>
         </BrowserRouter>
       </Provider>
     </div>

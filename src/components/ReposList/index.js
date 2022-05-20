@@ -3,7 +3,7 @@ import styles from "./repoList.module.css";
 import StarIcon from "../../assets/StarIcon.png";
 
 function ReposList(props) {
-  const { buttonFunc, list, fav} = props;
+  const { buttonFunc, list, fav } = props;
   var months = [
     "January",
     "February",
@@ -42,27 +42,29 @@ function ReposList(props) {
     }
   };
 
-
   return (
     <div>
-      <ul className={styles.listContainer}>
+      <ul className={styles.listContainer} style={list.length > 0 ? {borderTop: "2px solid #21262d"} : { border:"none"}}>
         {list &&
           list.length !== 0 &&
           list.map((repo) => (
             <li key={repo.id} className={styles.repoContainer}>
               <div className={styles.cont1}>
-                <div style={{display:"flex", paddingBottom:".5rem"}}>
-                <a className={styles.link} href={repo.html_url}>
-                  {repo.name}
-                </a>
-                <div className={styles.tag}>{repo.private ? "Pivate" : "Public"}</div>
+                <div style={{ display: "flex", paddingBottom: ".5rem" }}>
+                  <a className={styles.link} href={repo.html_url}>
+                    {repo.name}
+                  </a>
+                  <div>
+                    <div className={styles.tag}>
+                      {repo.private ? "Pivate" : "Public"}
+                    </div>
+                  </div>
                 </div>
                 <div
                   style={{
                     display: "flex",
                     fontSize: "1rem",
                     alignContent: "center",
-                    
                   }}
                 >
                   <div>
@@ -73,13 +75,8 @@ function ReposList(props) {
                   </div>
                   <div>{repo.owner.login}</div>
                 </div>
-                <div className={styles.description}>
-                  {" "}
-                  {repo.description}
-                </div>
-                <div
-                  className={styles.dateCont}
-                >
+                <div className={styles.description}> {repo.description}</div>
+                <div className={styles.dateCont}>
                   <div>{repo.language} </div>
                   <div>{days(repo.updated_at)}</div>
                 </div>
