@@ -27,7 +27,7 @@ export const fetchReposFailure = (error) => {
 };
 
 
-var github_token = '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'
+var github_token = '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'
 
 
 export const fetchRepos = (searchTerm, pageNo) => {
