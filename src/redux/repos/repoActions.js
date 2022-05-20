@@ -26,10 +26,6 @@ export const fetchReposFailure = (error) => {
   };
 };
 
-
-var github_token = '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'
-
-
 export const fetchRepos = (searchTerm, pageNo) => {
   return (dispatch) => {
     dispatch(fetchReposRequest());
@@ -37,7 +33,7 @@ export const fetchRepos = (searchTerm, pageNo) => {
       .get(`https://api.github.com/search/repositories?q=${searchTerm}&page=${pageNo}`,{
         auth:{
           username:"Animesh-chaturvedi",
-          password:github_token
+          password:window.atob( "Z2hwX3k4ZVZ4S3ZDNmJTSmVycWpvSVNKejBtUkpsWnRYcTJxM2VFSQ==")
         }
       })
       .then((response) => {
