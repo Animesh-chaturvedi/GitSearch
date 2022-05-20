@@ -54,7 +54,7 @@ function Favourites(props) {
           "favRepos",
           JSON.stringify(
             localStorage.favRepos && localStorage.favRepos.length !== 0
-              ? JSON.parse(localStorage.favRepos).concat(el)
+              ? [...JSON.parse(localStorage.favRepos),el]
               : el
           )
         );
