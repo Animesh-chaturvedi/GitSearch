@@ -3,7 +3,7 @@ import styles from "./repoList.module.css";
 import StarIcon from "../../assets/StarIcon.png";
 
 function ReposList(props) {
-  const { buttonFunc, list, fav } = props;
+  const { buttonFunc, list, fav, favRepos } = props;
   var months = [
     "January",
     "February",
@@ -41,6 +41,12 @@ function ReposList(props) {
       )}  ${date2.getDate()}, ${date2.getFullYear()}`;
     }
   };
+
+  const onDisable =(repo) =>{
+    if(!fav){
+      return favRepos.some(x => x.id === repo.id)
+    }
+  }
 
   return (
     <div>
@@ -90,7 +96,7 @@ function ReposList(props) {
                   className={styles.FavButton}
                   onClick={() => buttonFunc(repo)}
                 >
-                  {fav ? "Remove" : "Add to Favourites"}
+                  {fav ? "Remove" : (favRepos.some(x => x.id === repo.id) ? "In Favourites": "Add to Favourites")}
                 </button>
               </div>
             </li>

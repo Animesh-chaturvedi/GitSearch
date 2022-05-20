@@ -59,7 +59,7 @@ function Home(props) {
           {loading ? (
             "Loading..."
           ) : (
-            error ? (<div style={{color:"red"}}> {error}</div>) : (<ReposList list={repos} buttonFunc={addNewFav} fav={false} />)
+            error ? (<div style={{color:"red"}}> {error}</div>) : (<ReposList list={repos} buttonFunc={addNewFav} fav={false} favRepos={favRepos} />)
           )}
           {repos.length === 0 || loading ? (
             ""
