@@ -36,7 +36,7 @@ function Favourites(props) {
     let file = e.target.files[0];
     const fileReader = new FileReader();
     fileReader.onload = onReaderLoad;
-    fileReader.readAsText(e.target.files[0]);
+    fileReader.readAsText(file);
   };
 
   const onReaderLoad = (e) => {
@@ -47,7 +47,7 @@ function Favourites(props) {
           return el.id === fav.id;
         })
       ) {
-        console.log("already in favourites");
+        console.log("already in favourites")
       } else {
         addFav(el);
         localStorage.setItem(
@@ -126,7 +126,7 @@ function Favourites(props) {
           accept=".json"
           onChange={onInputFile}
         />
-        <button onClick={onImport} style={styles.button}>
+        <button onClick={() =>onImport()} style={styles.button}>
           Import JSON
         </button>
       </div>
