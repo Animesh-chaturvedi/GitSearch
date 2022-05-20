@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useRoutes,
+} from "react-router-dom";
+import Favourites from "./screens/Favourites";
+import Home from "./screens/Home";
+import { Provider } from "react-redux";
+import store from "./redux/store"
+import NavBar from "./components/NavBar"
+const Apps = () =>
+  useRoutes([
+    { path: "/", element: <Home /> },
+    { path: "/favourites", element: <Favourites /> },
+  ]);
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Provider store={store}>
+        <BrowserRouter>
+          <NavBar />
+          <Apps />
+        </BrowserRouter>
+      </Provider>
     </div>
   );
 }

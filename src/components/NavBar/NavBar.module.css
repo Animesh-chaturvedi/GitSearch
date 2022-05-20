@@ -1,0 +1,17 @@
+.container{
+    padding: 1rem 0rem;
+    display: flex;
+    font-size: 1.3rem;
+    width: 100%;
+    justify-content: center;
+}
+.linkTab{
+    color: white;
+    text-decoration: none;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: .8rem;
+}
+.tabActive{
+    border-bottom: 3px solid #f57825;
+}
