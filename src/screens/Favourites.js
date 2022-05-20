@@ -95,7 +95,7 @@ function Favourites(props) {
 
   useEffect(() => {
     setList(favRepos);
-  }, []);
+  }, [favRepos]);
 
   var styles = {
     button: {
