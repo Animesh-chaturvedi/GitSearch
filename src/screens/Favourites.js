@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { fetchRepos, addFav, removeFav, addMany } from "../redux";
 import { useEffect } from "react";
 import ReposList from "../components/ReposList";
+import { maxWidth } from "@mui/system";
 
 function Favourites(props) {
   const { repoObj, fetchRepos, addFav, favRepObj, removeFav } = props;
@@ -99,20 +100,21 @@ function Favourites(props) {
 
   var styles = {
     button: {
-      margin: "0rem 0rem 0rem 2rem",
+      // margin: "0rem 0rem 0rem 0rem",
       backgroundColor: "#238636",
       color: "#ffffff",
       fontSize: "1rem",
       border: "none",
       padding: "0.8rem 1.2rem",
       borderRadius: "8px",
+      whiteSpace:"noWrap"
     },
   };
 
   return (
     <div>
       <SearchBar fetch={filterFav} Text="Favourite" />
-      <div style={{display:"flex", justifyContent:"flex-end"}}>
+      <div style={{display:"flex", justifyContent:"space-around"}}>
         <button onClick={exportList} style={styles.button}>
           Export All
         </button>

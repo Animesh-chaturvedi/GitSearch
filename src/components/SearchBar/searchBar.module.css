@@ -1,6 +1,5 @@
 .container {
-  padding-top: 2rem;
-  padding-bottom: 1rem;
+    padding: 1rem 1rem 1rem .5rem;
   display: flex;
   width: 100%;
   align-items: center;
@@ -35,4 +34,9 @@
     .container{
         display: block;
     }
+    .headerText{
+        font-size: 1.2rem;
+    }
+
+
 }
