@@ -47,6 +47,16 @@ function Home(props) {
     asc ? setPageNo(pageNo + 1) : setPageNo(pageNo - 1);
   };
 
+  const handleAPIError = (err) => {
+    switch(err){
+      case 422: return " Search term can not be empty ";
+      case 304: return "not modified";
+      case 403: return "forbidden";
+      case 503: return "sorry unavailable service";
+      default: return err
+    }
+  }
+
   return (
     <div>
         <div>
@@ -59,7 +69,7 @@ function Home(props) {
           {loading ? (
             "Loading..."
           ) : (
-            error ? (<div style={{color:"red"}}> {error}</div>) : (<ReposList list={repos} buttonFunc={addNewFav} fav={false} favRepos={favRepos} />)
+            error ? (<div style={{fontSize:"1.5rem", color:"red"}} > {handleAPIError(error)}</div>) : (<ReposList list={repos} buttonFunc={addNewFav} fav={false} favRepos={favRepos} />)
           )}
           {repos.length === 0 || loading ? (
             ""

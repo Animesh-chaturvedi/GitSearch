@@ -44,7 +44,7 @@ export const fetchRepos = (searchTerm, pageNo) => {
         }
       })
       .catch((err) => {
-        const errMsg = err.message;
+        const errMsg = err.response.status;
         dispatch(fetchReposFailure(errMsg));
       });
   };
